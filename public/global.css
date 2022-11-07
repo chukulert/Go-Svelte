@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  /* overflow-x: hidden; */
+  /* overflow-y: hidden; */
+}
+
+:root {
+  --main-color: #000080;
+  --main-dark-color: #191970;
+  --main-light-color: #0f4d92;
+  --background-color: #c9c9cb;
+  --background-light-color: #e9e9eb;
+  --border-light-color: #e9e9eb;
+  --font-color: #393939;
+  --font-light-color: #d9d9db;
+  --danger-color: #dc3545;
+  --success-color: #056437;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
