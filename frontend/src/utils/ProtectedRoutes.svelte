@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import { navigate, Route } from "svelte-routing";
+  import { Route } from "svelte-routing";
   import Homepage from "../page/Homepage.svelte";
   export let path;
   export let component;
@@ -22,22 +22,17 @@
         .then((data) => {
           if (data.Code == 200) {
             isLoggedIn = true;
-            loaded = true;
+            loaded = true; //SPA
           } else {
-            isLoggedIn = false;
             loaded = true;
-            navigate("/");
           }
         })
         .catch((error) => {
           console.log(error);
-          isLoggedIn = false;
           loaded = true;
-          navigate("/");
         });
     } else {
       loaded = true;
-      navigate("/");
     }
   });
 </script>
@@ -45,5 +40,5 @@
 {#if isLoggedIn && loaded}
   <Route {path} {component} />
 {:else if !isLoggedIn && loaded}
-  <Route component={Homepage} />
+  <Route path="/" component={Homepage} />
 {/if}
