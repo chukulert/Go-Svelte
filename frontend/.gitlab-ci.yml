@@ -1,0 +1,37 @@
+stages:
+  - build and package
+  - deploy to test
+  - post-production
+
+#trigger build.sh to make gz file
+build on svr stage:
+  stage: build and package
+  rules:
+    - if: ($CI_COMMIT_BRANCH =~ /^rel/)
+  script:
+    - echo "BUILDING"
+    - echo $CI_COMMIT_BRANCH
+    - cd "C:/Users/commonuser/Desktop/buildspace/Ff-pHdWJ/0/gitlab-instance-1f5f55d9/frontend/build"
+    - ./build.sh
+
+#scp over ssh and starting svr
+deploy to test stage:
+  stage: deploy to test
+  rules:
+    - if: ($CI_COMMIT_BRANCH =~ /^rel/)
+  script:
+    - echo "DEPLOYING to test"
+    - cd "C:/Users/commonuser/Desktop/dtt"
+    - echo 1
+  - ./deploytotest.ps1 $TEST_SVR
+    - echo 2
+
+# post production -- curl test
+
+post production: 
+  stage: post-production
+  rules:
+    - if: ($CI_COMMIT_BRANCH =~ /^rel/)
+  script:
+    - echo "POST-PRODUCTION"
+    - curl 192.168.0.3:3001/test
