@@ -26,9 +26,9 @@
       .then((response) => response.json())
       .then((data) => {
         userlist = data;
-        if (userlist.Message === "You are not allow to view this page") {
-          navigate("/dashboard");
-        }
+//         if (userlist.Message === "You are not allow to view this page") {
+//           navigate("/dashboard");
+//         }
       })
       .catch((error) => {
         console.log(error);
