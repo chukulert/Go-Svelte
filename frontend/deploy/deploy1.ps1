@@ -1,22 +1,24 @@
-# scp 192.168.0.2:C:/Users/commonuser/Desktop/bin_repo/frontend.gz 192.168.0.3:/C:/Users/commonuser/Desktop/deployed
+# $processPID = $($(netstat -aon | findstr :3001)[0] -split '\s+')[-1]
 
+# tskill $processPID
 
-## unzip
-# shh 192.168.0.3
-# cd to deployed tar-zvcf
+cd C:\Users\commonuser\Desktop\fe_test
 
+tar -czf prev.gz .\.
 
-# create a backup copy in temp folder
+Copy-Item -Path "C:\Users\commonuser\Desktop\fe_test\prev.gz" -Destination "C:\Users\commonuser\Desktop\fe_temp"
 
+# del C:\Users\commonuser\Desktop\fe_test\*
+# del C:\Users\commonuser\Desktop\fe_test\main
 
-ssh commonuser@192.168.0.3"
-cd C:/Users/commonuser/Desktop/deployed/ |
-tar -xvzf frontend.gz | 
-cd .\frontend\ | 
-npm install |
-npm start"
+mkdir C:\Users\commonuser\Desktop\fe_test\main
 
+Copy-Item -Path "C:\Users\commonuser\Desktop\fe_deployed\frontend.gz" -Destination "C:\Users\commonuser\Desktop\fe_test\main"
 
+cd c:\Users\commonuser\Desktop\fe_test\main
 
+tar -xf frontend.gz
 
+cd c:\Users\commonuser\Desktop\fe_test\main
 
+Start-Process -NoNewWindow node server.js
